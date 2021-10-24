@@ -23,6 +23,9 @@ def dot(x: Array, y: Array) -> Array:
 
 
 def weight(x: Array) -> int:
+    """
+    Функция вычисяет вес Хэмминга
+    """
     return sum(x)
 
 
@@ -106,6 +109,9 @@ def create_code(n: int, k: int, d: int) -> Code:
 
 
 def create_Hamming_code(r: int) -> Code:
+    """
+    Функция формирует код Хэмминга
+    """
     n = 2 ** r - 1
     k = 2 ** r - r - 1
     d = 3
@@ -113,6 +119,9 @@ def create_Hamming_code(r: int) -> Code:
 
 
 def extend_Hamming_code(G: Array, H: Array) -> Code:
+    """
+    Функция формирует расширенный код Хэмминга
+    """
     H = numpy.append(H, numpy.zeros((1, H.shape[1]), dtype=int), axis=0)
     H = numpy.append(H, numpy.ones((H.shape[0], 1), dtype=int), axis=1)
     b = numpy.array([[weight(G[i]) % 2] for i in range(G.shape[0])])
@@ -121,6 +130,9 @@ def extend_Hamming_code(G: Array, H: Array) -> Code:
 
 
 def test_errors(G: Array, H: Array, syndromes: TableOfSyndromes, errors_count: int) -> None:
+    """
+    Функция для проыведения теста на разном количестве ошибок
+    """
     k, n = G.shape
     if errors_count > n:
         print(f'Количесво ошибок превышает длину кодовых слов ({errors_count} > {n})')
